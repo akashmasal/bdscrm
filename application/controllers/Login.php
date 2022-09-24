@@ -7,6 +7,8 @@ class Login extends CI_Controller
     {
         parent::__construct();
         $this->load->model("Login_model");
+       
+        // $this->session->session_start();
     }
 
     public function index()
@@ -47,9 +49,12 @@ class Login extends CI_Controller
                         // print_r($setUserSession);
                         // die;
                         $session = $this->session->set_userdata($setUserSession);
+                        // echo "<pre>";
+                        // print_r($this->session->userdata());
+                        // die;
                         
                         
-                        if ($session == true) {
+                        if ($this->session->userdata('id') != "") {
                             $this->session->set_flashdata("success", "Login Successfull..!!");
                             redirect(base_url("dashboard"));
                         } else {
