@@ -1,11 +1,11 @@
 <?php
-
 class Login extends CI_Controller
 {
-
+    
     public function __construct()
     {
         parent::__construct();
+        $this->load->library("session");
         $this->load->model("Login_model");
        
         // $this->session->session_start();
@@ -82,5 +82,12 @@ class Login extends CI_Controller
         } else {
             redirect('');
         }
+    }
+
+    public function logout()
+    {
+        $this->session->unset_userdata('id');
+        $this->session->sess_destroy();
+        redirect(base_url("login"));
     }
 }
