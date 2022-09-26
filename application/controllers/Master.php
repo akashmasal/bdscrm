@@ -40,7 +40,10 @@ class Master  extends CI_Controller
             );
 
             $addDept = $this->Model->add_departments($data);
+            if($addDept){
+                $this->session->set_flashdata("success","");
 
+            }
         }
         else
         {
